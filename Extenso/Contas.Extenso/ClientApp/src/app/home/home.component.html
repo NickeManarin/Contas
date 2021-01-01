@@ -1,0 +1,54 @@
+<p *ngIf="!contas"><em>Loading...</em></p>
+
+<div *ngIf="contas">
+  <table class='table table-striped' aria-labelledby="tableLabel">
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Valor Original</th>
+      <th>Valor Corrigido</th>
+      <th>Dias de Atraso</th>
+      <th>Data de Pagamento</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let conta of contas">
+      <td>{{ conta.nome }}</td>
+      <td>{{ conta.valor }}</td>
+      <td>{{ conta.valorAjustado }}</td>
+      <td>{{ conta.diasDeAtraso }}</td>
+      <td>{{ conta.pagamento.toLocaleString() }}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td>
+        <div class="md-form">
+          <label for="form1">Nome</label>
+          <input mdbInput type="text" name="nome" [(ngModel)]="nome" id="form1" class="form-control">
+        </div>
+      </td>
+      <td>
+        <div class="md-form">
+          <label for="form2">Valor</label>
+          <input mdbInput type="number" name="valor" [(ngModel)]="valor" id="form2" class="form-control">
+        </div>
+      </td>
+      <td colspan="2">
+        <div class="md-form">
+          <label for="form3">Data de Vencimento</label>
+          <input mdbInput type="date" name="vencimento" [(ngModel)]="vencimento" id="form3" class="form-control">
+        </div>
+      </td>
+      <td>
+        <div class="md-form">
+          <label for="form4">Data de Pagamento</label>
+          <input mdbInput type="date" name="pagamento" [(ngModel)]="pagamento" id="form4" class="form-control">
+        </div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+
+  <button class="btn btn-primary float-right" (click)="submit()">Adicionar</button>
+</div>
